@@ -46,6 +46,12 @@ def server_handler(c,addr):
         msg = input("send=> ")
         c.send(msg.encode("utf-8"))
 
+
+def usage():
+    print('use :- python chat.py -l -t [ip adress] -p [port]  to start listing ')
+    print('use :- python chat.py -t [ip] -p [port] to set the target')
+
+
 global listen
 global target
 global port
@@ -56,6 +62,8 @@ target      = ""
 port        = 4500 
 
 
+if not len(sys.argv[1:]):
+    usage()
 
 opts,arg = getopt.getopt(sys.argv[1:],"lc:t:p:")
 for o,a in opts:
@@ -65,8 +73,8 @@ for o,a in opts:
         target = a
     elif o in ['-p']:
         port = a    
-print(target)    
-print(port)
+print("ip :"target)    
+print("port :"port)
 
 if not listen :
     
